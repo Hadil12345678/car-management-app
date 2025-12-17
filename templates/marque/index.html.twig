@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Marques{% endblock %}
+
+{% block body %}
+<h1>Liste des Marques</h1>
+
+<a href="{{ path('marque_add') }}" class="btn btn-success mb-3">
+    ➕ Ajouter une marque
+</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Pays</th>
+            <th>Date création</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for marque in marques %}
+        <tr>
+            <td>{{ marque.id }}</td>
+            <td>{{ marque.nomMarque }}</td>
+            <td>{{ marque.paysOrigine }}</td>
+            <td>{{ marque.createdAt|date('Y-m-d') }}</td>
+            <td>
+                <a href="{{ path('marque_edit', {'id': marque.id}) }}" class="btn btn-warning btn-sm">
+                    ✏️ Edit
+                </a>
+
+                <a href="{{ path('marque_delete', {'id': marque.id}) }}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Are you sure?')">
+                    🗑 Delete
+                </a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">Aucune marque trouvée</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

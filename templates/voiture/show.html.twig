@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2>{{ voiture.nomVoiture }}</h2>
+<p>Puissance: {{ voiture.puissance }} CV</p>
+<p>{{ voiture.caracteristique }}</p>
+<img src="{{ voiture.image }}" width="300">
+{% endblock %}

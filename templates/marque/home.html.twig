@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Liste des Voitures</h2>
+
+<ul class="list-group">
+{% for v in lesCandidats %}
+    <li class="list-group-item">
+        {{ v.nomVoiture }} - {{ v.puissance }} CV
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

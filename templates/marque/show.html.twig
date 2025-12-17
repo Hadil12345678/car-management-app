@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Marque Details{% endblock %}
+
+{% block body %}
+<h1>{{ marque.nomMarque }} ({{ marque.paysOrigine }})</h1>
+<p>Created at: {{ marque.createdAt|date('d/m/Y H:i') }}</p>
+
+<h2>Voitures:</h2>
+
+{% for voiture in marque.voitures %}
+    <div style="margin-bottom: 30px;">
+        <p>
+            <strong>{{ voiture.nomVoiture }}</strong><br>
+            Puissance: {{ voiture.puissance }} CV<br>
+            {{ voiture.caracteristique }}
+        </p>
+
+        <!-- IMAGE UNDER THE TEXT -->
+        <img src="{{ asset('images/' ~ voiture.image) }}"
+             alt="{{ voiture.nomVoiture }}"
+             width="250">
+    </div>
+{% else %}
+    <p>No voitures for this marque.</p>
+{% endfor %}
+
+<a href="{{ path('app_marque') }}">Create Another Marque</a>
+{% endblock %}

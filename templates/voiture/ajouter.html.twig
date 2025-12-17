@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Ajouter Voiture</h2>
+
+{{ form_start(f) }}
+{{ form_widget(f) }}
+<button class="btn btn-primary mt-2">Ajouter</button>
+{{ form_end(f) }}
+{% endblock %}

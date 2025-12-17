@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: 'Poppins', sans-serif;
+
+        /* Background image */
+        background-image: url('/images/car-background.jpg'); /* replace with your image */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+    }
+
+    /* Container card */
+    .container {
+        text-align: center;
+        background: rgba(0,0,0,0.6); /* semi-transparent overlay */
+        padding: 60px 40px;
+        border-radius: 25px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        backdrop-filter: blur(5px);
+        max-width: 600px;
+        width: 90%;
+        position: relative;
+    }
+
+    h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+        animation: fadeInDown 1s ease forwards;
+    }
+
+    p {
+        font-size: 1.5em;
+        margin-bottom: 40px;
+        animation: fadeInDown 1.5s ease forwards;
+    }
+
+    /* Button styles */
+    .btn-gestion {
+        display: inline-block;
+        padding: 15px 35px;
+        font-size: 1.3em;
+        font-weight: bold;
+        background-color: #ff9800;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        transform: translateY(50px);
+        opacity: 0;
+        animation: slideUpFade 1s forwards;
+        animation-delay: 2s; /* appears after 2 seconds */
+        transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .btn-gestion:hover {
+        transform: translateY(-5px) scale(1.1);
+        background-color: #e68900;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        0% {opacity: 0; transform: translateY(-30px);}
+        100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes slideUpFade {
+        0% {opacity: 0; transform: translateY(50px);}
+        100% {opacity: 1; transform: translateY(0);}
+    }
+</style>
+
+<div class="container">
+    <h1>🚗 CarMarque Project</h1>
+    <p>Application de gestion des marques et voitures</p>
+
+    {# Button appears only after successful inscription #}
+    {% if app.user and app.session.get('inscription_success') %}
+        <a href="{{ path('gestion_marque') }}" class="btn-gestion">Gestion Marque</a>
+    {% endif %}
+</div>
+{% endblock %}
